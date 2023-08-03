@@ -85,7 +85,7 @@ class Solution:
             #type graph: String Dictionary
             #type start_node: 
             #return type: int
-        sol_list = []
+        time = 0
         nodes = graph.get_nodes()
         
         for i, n in enumerate(nodes):
@@ -98,11 +98,10 @@ class Solution:
                 time = graph.value(ng, n)
                 if(time < smallest): smallest = time
 
-            sol_list.append(smallest)
-            print(smallest)
-
-        sol_list.sort()
-        return sol_list[-1]
+            time += smallest
+            # print(smallest)
+        print(time)
+        return time
 
             
 
