@@ -99,6 +99,7 @@ class Solution:
                 if(time < smallest): smallest = time
 
             sol_list.append(smallest)
+            print(smallest)
 
         sol_list.sort()
         return sol_list[-1]
