@@ -87,8 +87,14 @@ class Solution:
             #return type: int
         sol_list = []
         nodes = graph.get_nodes()
-        for n in nodes:
-            print(n)
+        
+        for i, n in enumerate(nodes):
+            if(n is None): break
+
+            neighbors = graph.get_outgoing_edges(n)
+            for ng in neighbors:
+                print(graph.value(n, ng))
+
             
 
 def main():
