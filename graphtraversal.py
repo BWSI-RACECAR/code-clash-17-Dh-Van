@@ -86,7 +86,8 @@ class Solution:
             #type start_node: 
             #return type: int
         sol_list = []
-        for key in graph.keys():
+        keys = graph.keys()
+        for key in keys:
             print(key, graph[key])
             
 
