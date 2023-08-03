@@ -91,9 +91,17 @@ class Solution:
         for i, n in enumerate(nodes):
             if(n is None): break
 
+            smallest = self.shortest_time
+
             neighbors = graph.get_outgoing_edges(n)
             for ng in neighbors:
-                print(graph.value(n, ng))
+                time = graph.value(ng, n)
+                if(time < smallest): smallest = time
+
+            sol_list.append(smallest)
+
+        sol_list.sort()
+        return sol_list[-1]
 
             
 
