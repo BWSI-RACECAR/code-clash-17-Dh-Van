@@ -78,32 +78,40 @@ class Graph(object):
         return self.graph[node1][node2]
 
 class Solution:
-
-    shortest_time = 10000000000
     
     def spath_algo(self, graph, start_node):
-            #type graph: String Dictionary
-            #type start_node: 
-            #return type: int
-        time = 0
-        nodes = graph.get_nodes()
+        #type graph: String Dictionary
+        #type start_node: 
+        #return type: int
         
-        for i, n in enumerate(nodes):
-            if(n is None): break
-
-            smallest = self.shortest_time
-
-            neighbors = graph.get_outgoing_edges(n)
-            for ng in neighbors:
-                time = graph.value(ng, n)
-                if(time < smallest): smallest = time
-
-            time += smallest
-            # print(smallest)
-        print(time)
-        return time
-
+        #TODO: Write code below to return an int with the solution to the prompt.
+        unvisited_nodes = list(graph.get_nodes())
+   
+        shortest_path = {}
+        previous_nodes = {}
+   
+        for node in unvisited_nodes:
+            shortest_path[node] = sys.maxsize
+        shortest_path[start_node] = 0
+        
+        while len(unvisited_nodes) > 0:
+            current_min_node = None
+            for node in unvisited_nodes:
+                if current_min_node == None:
+                    current_min_node = node
+                elif shortest_path[node] < shortest_path[current_min_node]:
+                    current_min_node = node
             
+            neighbors = graph.get_outgoing_edges(current_min_node)
+            for neighbor in neighbors:
+                temp = shortest_path[current_min_node] + graph.value(current_min_node, neighbor)
+                if temp < shortest_path[neighbor]:
+                    shortest_path[neighbor] = temp
+                    previous_nodes[neighbor] = current_min_node
+    
+            unvisited_nodes.remove(current_min_node)
+        
+        return previous_nodes, shortest_path
 
 def main():
     tc1 = Solution()
